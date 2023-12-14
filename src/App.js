@@ -1,16 +1,24 @@
-import Navbar from './Navbar';
-import Home from './Home';
+// eslint-disable-next-line 
+
+import Navbar from "./Navbar";
+import Home from "./Home";
+import Create from "./Create";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar/>
-      <header className="App-header">
-       <div className="content">
-       <Home />
-       </div>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/create" element={<Create />} />
+                <Create />
+            </Routes>
+          </div>
+      </div>
+    </Router>
   );
 }
 
