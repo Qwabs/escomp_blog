@@ -1,31 +1,32 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Create = () => {
+const Edit = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [author, setAuthor] = useState("");
   const [isPending, setIsPending] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleEdit = (e) => {
     e.preventDefault();
     const blog = { title, body, author };
     setIsPending(true);
     fetch("http://localhost:8000/data/", {
-      method: "POST",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(blog),
     }).then(() => {
-      console.log("New Blog Added");
+      console.log("Blog Edited");
       setIsPending(false);
-      navigate('/');
+      navigate("/edit");
+      navigate('/')
     });
   };
   return (
-    <div className="create">
-      <h2>Add A New Blog</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="edit">
+      <h2>Edit Blog Content</h2>
+      <form onSubmit={handleEdit}>
         <label>Blog Title:</label>
         <input
           type="text"
@@ -44,11 +45,11 @@ const Create = () => {
           <option value="Richard">Richard</option>
           <option value="Guy Richie">Guy Richie</option>
         </select>
-        {!isPending && <button>Add Blog</button>}
-        {isPending && <button disabled>Adding Blog....</button>}
+        {!isPending && <button>Edit Blog</button>}
+        {isPending && <button disabled>Editing Blog....</button>}
       </form>
     </div>
   );
 };
 
-export default Create;
+export default Edit;

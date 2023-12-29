@@ -15,6 +15,16 @@ const Navbar = () => {
         >
           Create New Blog
         </Link>
+
+        <Link
+          to="/edit"
+          style={{
+            color: "white",
+            backgroundColor: "#f1356d",
+            borderRadius: "6px",
+          }}
+        >Edit Blog
+        </Link>
       </div>
     </nav>
   );
